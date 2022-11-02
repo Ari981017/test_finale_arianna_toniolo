@@ -49,7 +49,7 @@ class ContactRequest extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Name Surname',
             'email' => 'Email',
             'request_body' => 'Request Body',
             'request_date' => 'Request Date',

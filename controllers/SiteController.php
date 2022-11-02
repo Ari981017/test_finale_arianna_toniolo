@@ -118,7 +118,7 @@ class SiteController extends Controller
 
         if ($this->request->isPost) {
             if ($call->load($this->request->post()) && $call->save()) {
-                Yii::$app->session->setFlash('success', 'Your request has been sent');
+                Yii::$app->session->setFlash('success', 'Your request has been forwarded, as soon as possible our collaborator will contact you');
                 return $this->redirect(['index']);
             }
         }
