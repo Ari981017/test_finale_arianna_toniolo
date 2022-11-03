@@ -3,13 +3,15 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
+use yii\web\Controller;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\RequestType;
+use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use app\models\ContactRequest;
+use yii\filters\AccessControl;
 
 class SiteController extends Controller
 {
@@ -145,9 +147,11 @@ class SiteController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
 
         if ($list === '1') {
-            return ['Servizi Web' => '1', 'Servizio Gaia' => '2', 'Servizi Telefonici' => '3', 'Altro' => '4'];
-        }else{
-            return ['Nuovo servizio' => '5', 'Richiesta fattura' => '6', 'Contatto commerciale' => '7', 'Altro' => '8'];
+            $details = ArrayHelper::map(RequestType::find()->where(['type' => 1])->all(), 'description', 'id');
+            return $details;
+        } else {
+            $details = ArrayHelper::map(RequestType::find()->where(['type' => 2])->all(), 'description', 'id');
+            return $details;
         }
     }
 }

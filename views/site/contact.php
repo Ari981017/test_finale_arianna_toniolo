@@ -10,6 +10,7 @@ use yii\captcha\Captcha;
 use app\models\RequestType;
 use yii\helpers\ArrayHelper;
 use app\models\ContactRequest;
+use app\models\Linktype;
 use yii\bootstrap5\ActiveForm;
 
 
@@ -33,8 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($call, 'request_body')->textarea(['rows' => 6]) ?>
 
             <label for="contactrequest-request_type_id">Request Type</label>
-            <?= $form->field($call, 'request_type_id', ['inputOptions' => ['id' => 'contactform-requesttype']])->dropdownList(ArrayHelper::map(RequestType::find()
-                ->all(), 'id', 'description'), [
+            <?= $form->field($call, 'request_type_id', ['inputOptions' => ['id' => 'contactform-requesttype']])->dropdownList(ArrayHelper::map(Linktype::find()
+                ->all(), 'id', 'type'), [
                 'prompt' => [
                     'text' => 'Select the type of request',
                     'options' => ['disabled' => true, 'selected' => true]
@@ -49,9 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="form-group">
                 <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
             </div>
-
-            <?php ?>
-
             <?php ActiveForm::end(); ?>
 
         </div>
@@ -64,8 +62,6 @@ $script = <<< JS
 
 $(document).ready(function() {
         $("#contactform-requesttype").on('change.yii', function(v) {
-
-            console.log("sono qui" + v);
             // all'interno di "v" c'è il valore scelto ("Technical support" o "Commercial support" - proprietà v.target.value
             // eseguire quindi una chiamata Ajax usando jQuery
             $.ajax({
