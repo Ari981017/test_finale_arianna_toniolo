@@ -13,8 +13,8 @@ class m221016_090104_create_linktype_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%linktype}}', [
-            'id' => $this->primaryKey(),
-            'type' => $this->string()->notNull(),
+            'id'    => $this->primaryKey(),
+            'type'  => $this->string()->notNull(),
         ]);
 
 

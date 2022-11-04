@@ -27,25 +27,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-            <?= $form->field($call, 'name')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
 
-            <?= $form->field($call, 'email') ?>
+            <?= $form->field($model, 'email') ?>
 
-            <?= $form->field($call, 'request_body')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
 
-            <label for="contactrequest-request_type_id">Request Type</label>
-            <?= $form->field($call, 'request_type_id', ['inputOptions' => ['id' => 'contactform-requesttype']])->dropdownList(ArrayHelper::map(Linktype::find()
+            <?= $form->field($model, 'requestType', ['inputOptions' => ['id' => 'contactform-requesttype']])->dropdownList(ArrayHelper::map(Linktype::find()
                 ->all(), 'id', 'type'), [
                 'prompt' => [
                     'text' => 'Select the type of request',
                     'options' => ['disabled' => true, 'selected' => true]
                 ]
-            ])->label(false); ?>
+            ]); ?>
 
-            <label for="contactrequest-request_type_id">Request Detail</label>
-            <select id="contactform-requtdetail" class="form-select"></select>
+            <?= $form->field($model, 'requestDetail', ['inputOptions' => ['id' => 'contactform-requtdetail']])->dropDownList(array()); ?>
 
-            <?= $form->field($call, 'request_date')->input('date'); ?>
+            <?= $form->field($model, 'date')->input('date'); ?>
 
             <div class="form-group">
                 <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>

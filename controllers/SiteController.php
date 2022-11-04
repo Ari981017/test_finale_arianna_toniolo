@@ -109,27 +109,27 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
-        $call = new ContactRequest();
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
+        if ($model->load(Yii::$app->request->post())) {
 
-            return $this->refresh();
-        }
+            $call = new ContactRequest();
+            $call->name             = $model->name;
+            $call->email            = $model->email;
+            $call->request_body     = $model->body;
+            $call->request_type_id  = $model->requestDetail;
+            $call->request_date     = $model->date;
+            $call->save();
 
-
-        if ($this->request->isPost) {
-            if ($call->load($this->request->post()) && $call->save()) {
-                Yii::$app->session->setFlash('success', 'Your request has been forwarded, as soon as possible our collaborator will contact you');
-                return $this->redirect(['index']);
-            }
+            Yii::$app->session->setFlash('success', 'Your request has been forwarded, as soon as possible our collaborator will contact you');
+            return $this->redirect(['index']);
         }
 
         return $this->render('contact', [
-            'model' => $model,
-            'call' => $call
+            'model' => $model
         ]);
     }
+
+
 
     /**
      * Displays about page.

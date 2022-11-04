@@ -13,9 +13,9 @@ class m221027_151820_create_RequestType_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%RequestType}}', [
-            'id' => $this->primaryKey(),
+            'id'          => $this->primaryKey(),
             'description' => $this->string()->notNull(),
-            'type' => $this->integer(),
+            'type'        => $this->integer(),
         ]);
 
           // add foreign key for table `linktype`

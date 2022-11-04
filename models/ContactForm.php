@@ -12,10 +12,10 @@ class ContactForm extends Model
 {
     public $name;
     public $email;
-    public $subject;
     public $body;
-    public $verifyCode;
-
+    public $requestType;
+    public $requestDetail;
+    public $date;
 
     /**
      * @return array the validation rules.
@@ -23,11 +23,9 @@ class ContactForm extends Model
     public function rules()
     {
         return [
-            [['name', 'email', 'requestType', 'requestDetail', 'body'], 'required'],
+            [['name', 'email', 'requestType', 'requestDetail', 'body', 'date'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
-            // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
         ];
     }
 
