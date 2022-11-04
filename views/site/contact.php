@@ -4,12 +4,8 @@
 /** @var yii\bootstrap5\ActiveForm $form */
 /** @var app\models\ContactForm $model */
 
-use app\controllers\SiteController;
 use yii\bootstrap5\Html;
-use yii\captcha\Captcha;
-use app\models\RequestType;
 use yii\helpers\ArrayHelper;
-use app\models\ContactRequest;
 use app\models\Linktype;
 use yii\bootstrap5\ActiveForm;
 
@@ -63,7 +59,7 @@ $(document).ready(function() {
             // all'interno di "v" c'è il valore scelto ("Technical support" o "Commercial support" - proprietà v.target.value
             // eseguire quindi una chiamata Ajax usando jQuery
             $.ajax({
-                url: 'http://localhost:8080/index.php?r=site%2Fget-requests-by-type',
+                url: 'http://localhost:8080/index.php/site/get-requests-by-type',
                 type: 'GET',
                 data: {
                     list: v.target.value
