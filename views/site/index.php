@@ -10,8 +10,12 @@ $this->title = 'My Yii Application';
         <h1 class="display-4">Congratulations!</h1>
 
         <p class="lead">You have successfully created your Yii-powered application.</p>
+        <div class="d-flex justify-content-evenly">
+            <p><a class="btn btn-lg btn-warning" href="/contact/index">Contact Request</a></p>
 
-        <p><a class="btn btn-lg btn-success" href="/contact/index">Contact Request</a></p>
+            <p><a class="btn btn-lg btn-warning" href="/request/index">Request Type</a></p>
+        </div>
+
     </div>
 
     <div class="body-content">
